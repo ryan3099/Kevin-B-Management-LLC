@@ -1,67 +1,227 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CAP Garland, LLC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kevin B Management LLC</title>
+  <meta name="description" content="Administrative and Support Services — Kevin B Management LLC. Placeholder site ready for your content."/>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f0f0;
-      color: #333;
+    :root{
+      --primary:#E10600; /* Red */
+      --black:#000000;
+      --text:#111;
+      --bg:#ffffff;
+      --card:#ffffff;
     }
-    header {
-      background-color: #003366;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+
+    header{background:var(--primary); color:#fff; position:sticky; top:0; z-index:10; box-shadow:0 6px 18px rgba(0,0,0,.08)}
+    .topbar{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 24px}
+    .brand{font-weight:800; letter-spacing:.4px}
+    nav a{display:inline-block; padding:10px 14px; border-radius:12px; color:#fff; font-weight:700}
+    nav a:hover{background:rgba(255,255,255,.12)}
+    .cta-btn{background:#fff; color:var(--primary); padding:10px 14px; border-radius:12px; font-weight:800}
+    .cta-btn:hover{opacity:.9}
+
+    /* Hero Card */
+    .hero-wrap{background:linear-gradient(180deg, #fff, #ffe5e4); padding:42px 24px}
+    .hero-card{
+      background:var(--card);
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:22px;
+      box-shadow:0 30px 60px rgba(0,0,0,.10);
+      padding:28px;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
+      overflow:hidden;
+      transform:translateY(24px);
+      opacity:0;
+      animation:cardIn .9s ease-out .15s forwards;
     }
-    section {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
+    @keyframes cardIn{ to{transform:translateY(0); opacity:1} }
+    .hero-badge{display:inline-flex; align-items:center; gap:10px; background:var(--black); color:#fff; padding:6px 12px; border-radius:999px; font-size:.9rem; font-weight:700}
+    .hero-title{font-size:clamp(26px, 4vw, 42px); line-height:1.15; margin:14px 0 10px; font-weight:900; color:#0b0b0b}
+    .hero-sub{font-size:1.02rem; color:#333}
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px}
+    .btn{border:2px solid var(--black); color:#fff; background:var(--black); padding:12px 18px; border-radius:14px; font-weight:800}
+    .btn:hover{transform:translateY(-1px); box-shadow:0 8px 16px rgba(0,0,0,.15)}
+    .btn.secondary{background:transparent; color:var(--black)}
+    .hero-media{border-radius:18px; overflow:hidden; aspect-ratio: 4 / 3; background:#f6f6f6;
+      display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:8px}
+    .hero-media img{object-fit:cover; width:100%; height:100%}
+
+    /* Sections */
+    section{padding:56px 24px}
+    section h2{font-size:clamp(22px, 3vw, 32px); margin:0 0 14px; font-weight:900}
+    .muted{color:#555}
+
+    /* Cards */
+    .cards{display:grid; grid-template-columns:repeat( auto-fit, minmax(220px, 1fr) ); gap:16px}
+    .card{
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:16px; padding:16px; background:#fff; box-shadow:0 8px 24px rgba(0,0,0,.06);
+      transform:translateY(14px); opacity:0
     }
-    h1, h2 {
-      color: #003366;
+    .card.reveal{animation:reveal .7s ease-out forwards}
+    @keyframes reveal{ to{transform:translateY(0); opacity:1}}
+
+    /* Gallery */
+    .gallery{display:grid; grid-template-columns:repeat(2, 1fr); gap:12px}
+    .gallery img{border-radius:14px; aspect-ratio: 4/3; object-fit:cover}
+
+    /* Formula 10 points */
+    .formula{border-left:6px solid var(--primary); background:#fff6f6; padding:16px 18px; border-radius:12px}
+    .formula ol{margin:0; padding-left:18px}
+    .formula li{margin:8px 0}
+
+    /* Contact */
+    .contact-box{
+      background:var(--primary); color:#fff; border-radius:18px; padding:20px; display:grid; gap:8px;
+      border:1px solid rgba(0,0,0,.12)
     }
-    .contact {
-      background: #fff;
-      padding: 20px;
-      border-left: 5px solid #003366;
-      margin-top: 30px;
+    .contact-box a.wa{
+      display:inline-block; background:#fff; color:var(--primary); padding:10px 14px; border-radius:12px; font-weight:800
     }
-    footer {
-      background-color: #003366;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 50px;
+
+    footer{background:#000; color:#fff; padding:18px; text-align:center; font-weight:700}
+
+    /* Small screens */
+    @media (max-width: 820px){
+      .hero-card{grid-template-columns:1fr; padding:20px}
+      .gallery{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
+
+  <!-- Header -->
   <header>
-    <h1>CAP Garland, LLC</h1>
-    <p>Private Investment Fund</p>
+    <div class="topbar container">
+      <div class="brand">Kevin B Management LLC</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#formula">Our Formula</a>
+        <a href="#contact" class="cta-btn">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <section>
-    <h2>About Us</h2>
-    <p>CAP Garland, LLC is a Washington-based private investment fund focused on delivering value through diversified investment strategies.</p>
+  <!-- HERO (animated card) -->
+  <div class="hero-wrap">
+    <div class="container">
+      <div class="hero-card">
+        <div>
+          <span class="hero-badge">Administrative & Support Services</span>
+          <h1 class="hero-title">Bold operations. Reliable support.<br/>Same <span style="background:linear-gradient(90deg,#000,#333); -webkit-background-clip:text; color:transparent;">style</span>, new brand.</h1>
+          <p class="hero-sub">This is a placeholder hero paragraph for Kevin B Management LLC. Replace this text with your value proposition and key benefits when you're ready.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#services">Explore Services</a>
+            <a class="btn secondary" href="#contact">Get a Quote</a>
+          </div>
+          <p class="muted" style="margin-top:10px;">1401 21ST ST., SACRAMENTO • +1 435 351 6375 • contact@kevinbmgt.shop</p>
+        </div>
+        <div class="hero-media">
+          <img src="https://miro.medium.com/v2/resize:fit:900/1*U7qx7blwSUt1Yb0FI3g5Tw.jpeg" alt="Teamwork">
+          <img src="https://i.pinimg.com/736x/7c/f0/ae/7cf0ae6dc6ae8ac11d905e4a07871e1b.jpg" alt="Management">
+          <img src="https://static.tildacdn.com/tild6161-3335-4864-b166-323737616130/nuernberger-communic.jpg" alt="Operations">
+          <img src="https://img.freepik.com/premium-photo/man-holding-icon-virtual-247-support-services-worldwide-nonstop-fulltime-available-contact-service-concept-assistance-customer-services-care-consulting-client-24hr-call-center_708636-2009.jpg" alt="24/7 support">
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- About -->
+  <section id="about" class="container">
+    <h2>About Us</h2>
+    <p class="muted">[Placeholder] Kevin B Management LLC delivers administrative and support services. Add a 3–5 line summary here describing your mission, approach, and what sets you apart.</p>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="container">
+    <h2>Services</h2>
+    <p class="muted">[Placeholder] A quick overview of core services. Replace each card text with your own points.</p>
+    <div class="cards">
+      <article class="card reveal" style="animation-delay:.00s">
+        <h3>Service Category 1</h3>
+        <p>[Placeholder] Short description of this category.</p>
+      </article>
+      <article class="card reveal" style="animation-delay:.08s">
+        <h3>Service Category 2</h3>
+        <p>[Placeholder] Short description of this category.</p>
+      </article>
+      <article class="card reveal" style="animation-delay:.16s">
+        <h3>Service Category 3</h3>
+        <p>[Placeholder] Short description of this category.</p>
+      </article>
+      <article class="card reveal" style="animation-delay:.24s">
+        <h3>Service Category 4</h3>
+        <p>[Placeholder] Short description of this category.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="container">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="https://miro.medium.com/v2/resize:fit:900/1*U7qx7blwSUt1Yb0FI3g5Tw.jpeg" alt="Teamwork">
+      <img src="https://i.pinimg.com/736x/7c/f0/ae/7cf0ae6dc6ae8ac11d905e4a07871e1b.jpg" alt="Management">
+      <img src="https://static.tildacdn.com/tild6161-3335-4864-b166-323737616130/nuernberger-communic.jpg" alt="Operations">
+      <img src="https://img.freepik.com/premium-photo/man-holding-icon-virtual-247-support-services-worldwide-nonstop-fulltime-available-contact-service-concept-assistance-customer-services-care-consulting-client-24hr-call-center_708636-2009.jpg" alt="24/7 support">
+    </div>
+  </section>
+
+  <!-- Our Formula (10 Points) -->
+  <section id="formula" class="container">
+    <h2>Our Formula (10 Key Points)</h2>
+    <div class="formula">
+      <ol>
+        <li><strong>Quick Overview:</strong> Administrative & Support Services website with a conversion-focused hero.</li>
+        <li><strong>Pages/Sections:</strong> Home, About, Services, Gallery, Contact, Legal/Privacy (optional).</li>
+        <li><strong>Design & Style:</strong> Modern block layout, Inter font, Red & Black palette, 1 strong image per section, subtle animations.</li>
+        <li><strong>Core Features:</strong> Contact form, Map embed, WhatsApp click-to-chat, basic SEO, optimized performance.</li>
+        <li><strong>Content:</strong> Logo, section texts, images, and contact/social details (to be provided).</li>
+        <li><strong>Tech Stack:</strong> HTML5 + CSS + vanilla JS for speed and simplicity.</li>
+        <li><strong>Maintenance:</strong> Backups and security hygiene (HTTPS, updates).</li>
+        <li><strong>Timeline:</strong> Draft mockup → first version → revisions.</li>
+        <li><strong>Pricing Scope:</strong> Responsive design, up to X pages, basic SEO, forms & social integration.</li>
+        <li><strong>CTAs:</strong> Primary “Get a Quote”, secondary “WhatsApp” and “Contact”.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="container">
     <h2>Contact</h2>
-    <div class="contact">
-      <p><strong>Address:</strong> 915 W 2nd Ave, Spokane, WA 99201</p>
-      <p><strong>Email:</strong> <a href="mailto:ryanberg@capgarland.shop">ryanberg@capgarland.shop</a></p>
-      <p><strong>Phone:</strong> (509) 822-3850</p>
+    <div class="contact-box">
+      <div><strong>Company:</strong> Kevin B Management LLC</div>
+      <div><strong>Sector:</strong> Administrative and Support Services</div>
+      <div><strong>Address:</strong> 1401 21ST ST., SACRAMENTO</div>
+      <div><strong>Phone:</strong> +1 435 351 6375</div>
+      <div><strong>Email:</strong> contact@kevinbmgt.shop</div>
+      <a class="wa" href="https://wa.me/14353516375" target="_blank" rel="noopener">WhatsApp Us</a>
     </div>
   </section>
 
   <footer>
-    &copy; 2025 CAP Garland, LLC. All rights reserved.
+    © 2025 Kevin B Management LLC — All rights reserved
   </footer>
+
+  <script>
+    // Reveal-on-scroll for cards
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('reveal'); observer.unobserve(e.target); }
+      })
+    }, {threshold:.15});
+    document.querySelectorAll('.card').forEach(el=>observer.observe(el));
+  </script>
 </body>
 </html>
